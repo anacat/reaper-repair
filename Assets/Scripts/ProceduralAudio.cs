@@ -81,7 +81,16 @@ public class ProceduralAudio : MonoBehaviour
     {
         while (Sinput.GetButton(_button))
         {
-            //_audioSource.pitch = Mathf.Lerp(_audioSource.pitch, 0, Time.deltaTime * 0.1f);
+            if (Sinput.GetButtonDown("RB"))
+            {
+                _audioSource.pitch += 0.1f;
+            }
+
+            if (Sinput.GetButtonDown("LB"))
+            {
+                _audioSource.pitch -= 0.1f;
+            }
+
             yield return null;
         }
 

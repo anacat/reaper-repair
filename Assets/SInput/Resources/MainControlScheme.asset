@@ -128,6 +128,16 @@ MonoBehaviour:
     gamepadInputs: 0e000000
     mouseInputs: 
     virtualInputs: []
+  - name: LB
+    keyboardInputs: 
+    gamepadInputs: 05000000
+    mouseInputs: 
+    virtualInputs: []
+  - name: RB
+    keyboardInputs: 
+    gamepadInputs: 06000000
+    mouseInputs: 
+    virtualInputs: []
   smartControls:
   - name: Horizontal
     positiveControl: Right

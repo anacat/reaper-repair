@@ -10,13 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb63696f4e388b74f83605769a9e5aed, type: 3}
-  m_Name: MusicStuff
+  m_Name: CMajor
   m_EditorClassIdentifier: 
   frequencyList:
-  - note: 0
-    frequency: 440
-  - note: 1
-    frequency: 493.88
   - note: 2
     frequency: 261.63
   - note: 3
@@ -27,3 +23,9 @@ MonoBehaviour:
     frequency: 349.23
   - note: 6
     frequency: 392
+  - note: 0
+    frequency: 440
+  - note: 1
+    frequency: 493.88
+  - note: 2
+    frequency: 523.25
