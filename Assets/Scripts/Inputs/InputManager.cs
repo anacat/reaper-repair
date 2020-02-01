@@ -1,18 +1,22 @@
-﻿using System.Collections;
+﻿using 
+    System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager
 {
-    // Start is called before the first frame update
-    void Start()
+    public static bool IsValidKey()
     {
-        
-    }
+        if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Q) ||
+            Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.E) ||
+            Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.T) ||
+            Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown(KeyCode.U) ||
+            Input.GetKeyDown(KeyCode.I))
+        {
+            return true;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return false;
     }
 }
+
