@@ -10,47 +10,47 @@ public class NoteController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Sinput.GetButtonDown("DPadLeft"))
         {
-            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.C).frequency, KeyCode.Q);
+            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.C).frequency, "DPadLeft");
         }
-        else if (Input.GetKeyDown(KeyCode.W))
+        else if (Sinput.GetButtonDown("DPadUp"))
         {
-            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.D).frequency, KeyCode.W);
+            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.D).frequency, "DPadUp");
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Sinput.GetButtonDown("DPadRight"))
         {
-            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.E).frequency, KeyCode.E);
+            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.E).frequency, "DPadRight");
         }
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Sinput.GetButtonDown("DPadDown"))
         {
-            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.F).frequency, KeyCode.R);
+            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.F).frequency, "DPadDown");
         }
-        else if (Input.GetKeyDown(KeyCode.T))
+        else if (Sinput.GetButtonDown("X"))
         {
-            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.G).frequency, KeyCode.T);
+            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.G).frequency, "X");
         }
-        else if (Input.GetKeyDown(KeyCode.Y))
+        else if (Sinput.GetButtonDown("Y"))
         {
-            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.A).frequency, KeyCode.Y);
+            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.A).frequency, "Y");
         }
-        else if (Input.GetKeyDown(KeyCode.U))
+        else if (Sinput.GetButtonDown("B"))
         {
-            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.B).frequency, KeyCode.U);
+            CreateNoteSound(noteThing.frequencyList.Find(n => n.note == MusicNoteHolder.Note.B).frequency, "B");
         }
-        else if (Input.GetKeyDown(KeyCode.I))
+        else if (Sinput.GetButtonDown("A"))
         {
-            CreateNoteSound(523.25f, KeyCode.I);
+            CreateNoteSound(523.25f, "A");
         }
 
         //no grips 4 u =(
         //FindObjectOfType<NoiseBgController>().state = FindObjectsOfType<ProceduralAudio>().Length > 0 ? 0 : 1;
     }
 
-    private void CreateNoteSound(float frequency, KeyCode key)
+    private void CreateNoteSound(float frequency, string button)
     {
         GameObject note = Instantiate(proceduralAudioPrefab, transform);
 
-        note.GetComponent<ProceduralAudio>().SetNote(frequency, key);
+        note.GetComponent<ProceduralAudio>().SetNote(frequency, button);
     }
 }

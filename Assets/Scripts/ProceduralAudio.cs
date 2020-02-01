@@ -27,7 +27,7 @@ public class ProceduralAudio : MonoBehaviour
     AudioLowPassFilter lowPassFilter;
 
     private AudioSource _audioSource;
-    private KeyCode _key;
+    private string _button;
 
     void Awake()
     {
@@ -37,9 +37,9 @@ public class ProceduralAudio : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void SetNote(float frequency, KeyCode key)
+    public void SetNote(float frequency, string button)
     {
-        _key = key;
+        _button = button;
         cutOff = true;
         this.frequency = frequency;
 
@@ -79,7 +79,7 @@ public class ProceduralAudio : MonoBehaviour
 
     private IEnumerator CheckPress()
     {
-        while (Input.GetKey(_key))
+        while (Sinput.GetButton(_button))
         {
             //_audioSource.pitch = Mathf.Lerp(_audioSource.pitch, 0, Time.deltaTime * 0.1f);
             yield return null;

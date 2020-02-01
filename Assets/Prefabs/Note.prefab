@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noiseRatio: 0
-  offset: -0.02
+  offset: 1
   cutoffOn: 800
   cutoffOff: 100
   cutOff: 0
