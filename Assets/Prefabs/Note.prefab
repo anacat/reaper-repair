@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca253d5e04d09740be6dd721ee01cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noiseRatio: 0.889
+  noiseRatio: 0
   offset: -0.02
   cutoffOn: 800
   cutoffOff: 100
   cutOff: 0
   frequency: 440
-  gain: 50
+  gain: 1
 --- !u!82 &623388861502797744
 AudioSource:
   m_ObjectHideFlags: 0

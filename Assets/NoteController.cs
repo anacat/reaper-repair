@@ -43,7 +43,8 @@ public class NoteController : MonoBehaviour
             CreateNoteSound(523.25f, KeyCode.I);
         }
 
-        FindObjectOfType<NoiseBgController>().state = FindObjectsOfType<ProceduralAudio>().Length > 0 ? 0 : 1;
+        //no grips 4 u =(
+        //FindObjectOfType<NoiseBgController>().state = FindObjectsOfType<ProceduralAudio>().Length > 0 ? 0 : 1;
     }
 
     private void CreateNoteSound(float frequency, KeyCode key)
