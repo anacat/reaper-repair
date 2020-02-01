@@ -6,6 +6,7 @@ public class RhythmGenerator : MonoBehaviour
     private float _initialInputTime;
     private float _currentIntervalTime;
     private float _lastInputTime;
+    private const int FRACTION_INTERVAL = 5;
 
     public GameObject TextureFeedback;
 
@@ -16,7 +17,7 @@ public class RhythmGenerator : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -44,6 +45,7 @@ public class RhythmGenerator : MonoBehaviour
                 }
                 break;
             case 2:
+                RhythmEnforcer();
                 if (InputManager.IsValidKey())
                 {
                     float currentInput = Time.time;
@@ -61,10 +63,11 @@ public class RhythmGenerator : MonoBehaviour
                 }
                 break;
             case 3:
+                RhythmEnforcer();
                 if (InputManager.IsValidKey())
                 {
                     float currentInput = Time.time;
-                    if(IsOnAcceptableInterval(currentInput))
+                    if (IsOnAcceptableInterval(currentInput))
                     {
                         TextureFeedback.SetActive(true);
                         _lastInputTime = Time.time;
@@ -89,7 +92,7 @@ public class RhythmGenerator : MonoBehaviour
     {
         float deltaTime = currentInput - _lastInputTime;
         float[] acceptableTimeInterval = new float[2];
-        float fractionFromInterval = _currentIntervalTime / 5;
+        float fractionFromInterval = _currentIntervalTime / FRACTION_INTERVAL;
 
         acceptableTimeInterval[0] = _currentIntervalTime - fractionFromInterval;
         acceptableTimeInterval[1] = _currentIntervalTime + fractionFromInterval;
@@ -102,6 +105,16 @@ public class RhythmGenerator : MonoBehaviour
         return false;
     }
 
+    private void RhythmEnforcer()
+    {
+        float fractionFromInterval = _currentIntervalTime / FRACTION_INTERVAL;
+
+        if (Time.time - _lastInputTime > _currentIntervalTime + fractionFromInterval)
+        {
+            _timeSignaturePhase = 0;
+        }
+    }
+
     private void DisableObjects()
     {
         TextureFeedback.SetActive(false);
@@ -111,7 +124,5 @@ public class RhythmGenerator : MonoBehaviour
         Lose.SetActive(false);
     }
 
-
-
-
+    public float CurrentInterval { get { return _currentIntervalTime; } }
 }
