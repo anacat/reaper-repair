@@ -81,8 +81,7 @@ public class ProceduralAudio : MonoBehaviour
     {
         while (Input.GetKey(_key))
         {
-            _audioSource.pitch = Mathf.Lerp(_audioSource.pitch, 0, Time.deltaTime * 0.1f);
-
+            //_audioSource.pitch = Mathf.Lerp(_audioSource.pitch, 0, Time.deltaTime * 0.1f);
             yield return null;
         }
 
