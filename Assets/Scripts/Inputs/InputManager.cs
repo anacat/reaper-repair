@@ -24,6 +24,18 @@ public class InputManager
                Sinput.GetButtonDown("RB");
     }
 
+    public static bool IsButtonDown()
+    {
+        return Input.GetMouseButtonDown(0) || Sinput.GetButton(GetInputName(InputButton.A)) ||
+               Sinput.GetButton(GetInputName(InputButton.B)) || Sinput.GetButton(GetInputName(InputButton.X)) ||
+               Sinput.GetButton(GetInputName(InputButton.Y)) ||
+               Sinput.GetButton(GetInputName(InputButton.DPadLeft)) ||
+               Sinput.GetButton(GetInputName(InputButton.DPadRight)) ||
+               Sinput.GetButton(GetInputName(InputButton.DPadDown)) ||
+               Sinput.GetButton(GetInputName(InputButton.DPadUp)) || Sinput.GetButton("LB") ||
+               Sinput.GetButton("RB");
+    }
+
     public static string GetInputName(InputButton btn)
     {
         switch (btn)

@@ -36,6 +36,8 @@ public class RhythmGenerator : MonoBehaviour
     {
         DisableObjects();
 
+        rhythmData.buttonPress = InputManager.IsButtonDown();
+
         switch (_timeSignaturePhase)
         {
             case 0:

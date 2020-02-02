@@ -12,7 +12,21 @@ public class RhythmData : ScriptableObject
         Perfect
     }
 
+    public enum Level
+    {
+        Dark,
+        Grass,
+        Flower,
+        Tree,
+        Bird
+    }
+
     public float currentInterval;
     public int timeSignaturePhase;
     public SuccessTypes successType;
+
+    [Header("Level")]
+    public Level level;
+
+    public bool buttonPress;
 }
