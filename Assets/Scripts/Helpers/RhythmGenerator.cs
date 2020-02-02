@@ -12,8 +12,10 @@ public class RhythmGenerator : MonoBehaviour
     private const int FRACTION_INTERVAL_PERFECT = 15;
     private const float DEFAULT_INTERVAL_TIME = 0.5f;
     private const int MAX_FAIL_TIMES = 8;
+    private const int DARK_WIN_TIMES = 4;
 
     private int _decayCounter = 0;
+    private int _winCounter = 0;
 
     public delegate void OnSuccessEvent();
     public event OnSuccessEvent onSuccess;
@@ -108,12 +110,22 @@ public class RhythmGenerator : MonoBehaviour
                     float currentInput = Time.time;
                     if (IsOnAcceptableInterval(currentInput))
                     {
+                        _winCounter++;
                         TextureFeedback.SetActive(true);
                         _lastInputTime = Time.time;
 
                         if (onSuccess != null)
                         {
                             onSuccess();
+                        }
+
+                        if(rhythmData.level != RhythmData.Level.Dark && _winCounter > rhythmData.elements[(int)rhythmData.level - 1].spriteList.Count)
+                        {
+                            BeatLevel();
+                        }
+                        else if (rhythmData.level == RhythmData.Level.Dark && _winCounter > DARK_WIN_TIMES)
+                        {
+                            BeatLevel();
                         }
                     }
                     else
@@ -132,6 +144,12 @@ public class RhythmGenerator : MonoBehaviour
         }
 
         rhythmData.timeSignaturePhase = _timeSignaturePhase;
+    }
+
+    private void BeatLevel()
+    {
+        _winCounter = 0;
+        rhythmData.level++;
     }
 
     private float GetCurrentInterval(float initialInputTime)
@@ -185,8 +203,7 @@ public class RhythmGenerator : MonoBehaviour
         if (Time.time - _lastInputTime > _currentIntervalTime + fractionFromInterval)
         {
             _timeSignaturePhase = 0;
-
-            if (onFail != null)
+            if(onFail != null)
             {
                 onFail();
             }

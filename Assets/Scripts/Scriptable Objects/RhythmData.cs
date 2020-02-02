@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/RhythmData Game Data")]
 public class RhythmData : ScriptableObject
 {
+    public List<AnimatedNatureElement> elements;
+
     public enum SuccessTypes
     {
         Good,
