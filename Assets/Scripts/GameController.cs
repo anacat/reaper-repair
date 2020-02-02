@@ -15,6 +15,9 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         grassList.ForEach(g => g.enabled = false);
+        flowerList.ForEach(f => f.enabled = false);
+        treeList.ForEach(t => t.enabled = false);
+        birdList.ForEach(b => b.enabled = false);
     }
 
     private void Update()
@@ -35,10 +38,14 @@ public class GameController : MonoBehaviour
                     break;
                 case RhythmData.Level.Flower:
                     grassList.ForEach(g => g.Finish(true));
+                    flowerList.ForEach(f => f.enabled = true);
                     break;
                 case RhythmData.Level.Tree:
+                    flowerList.ForEach(f => f.Finish(true));
+                    treeList.ForEach(t => t.enabled = true);
                     break;
                 case RhythmData.Level.Bird:
+                    treeList.ForEach(t => t.Finish(true));
                     break;
             }
 

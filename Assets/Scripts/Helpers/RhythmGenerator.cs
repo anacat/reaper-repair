@@ -185,7 +185,11 @@ public class RhythmGenerator : MonoBehaviour
         if (Time.time - _lastInputTime > _currentIntervalTime + fractionFromInterval)
         {
             _timeSignaturePhase = 0;
-            onFail();
+
+            if (onFail != null)
+            {
+                onFail();
+            }
         }
     }
 

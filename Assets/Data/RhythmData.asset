@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caca7fb70f4b6bb44bb86495d7f778fd, type: 3}
   m_Name: RhythmData
   m_EditorClassIdentifier: 
-  currentInterval: 0.22030449
+  currentInterval: 0.31808424
   timeSignaturePhase: 0
   successType: 0
-  level: 2
+  level: 0
   buttonPress: 0
