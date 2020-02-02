@@ -20,7 +20,8 @@ public class InputManager
                Sinput.GetButtonDown(GetInputName(InputButton.B)) || Sinput.GetButtonDown(GetInputName(InputButton.X)) ||
                Sinput.GetButtonDown(GetInputName(InputButton.Y)) || Sinput.GetButtonDown(GetInputName(InputButton.DPadLeft)) ||
                Sinput.GetButtonDown(GetInputName(InputButton.DPadRight)) || Sinput.GetButtonDown(GetInputName(InputButton.DPadDown)) ||
-               Sinput.GetButtonDown(GetInputName(InputButton.DPadUp));
+               Sinput.GetButtonDown(GetInputName(InputButton.DPadUp)) || Sinput.GetButtonDown("LB") ||
+               Sinput.GetButtonDown("RB");
     }
 
     public static string GetInputName(InputButton btn)

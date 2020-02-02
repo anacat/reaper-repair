@@ -6,7 +6,16 @@ public class RhythmGenerator : MonoBehaviour
     private float _initialInputTime;
     private float _currentIntervalTime;
     private float _lastInputTime;
-    private const int FRACTION_INTERVAL = 5;
+    private const int FRACTION_INTERVAL_GOOD = 5;
+    private const int FRACTION_INTERVAL_GREAT = 10;
+    private const int FRACTION_INTERVAL_PERFECT = 15;
+    private SuccessTypes _successType;
+
+    public delegate void OnSuccessEvent();
+    public event OnSuccessEvent onSuccess;
+
+    public delegate void OnFailEvent();
+    public event OnFailEvent onFail;
 
     public GameObject TextureFeedback;
 
@@ -17,7 +26,6 @@ public class RhythmGenerator : MonoBehaviour
 
     void Start()
     {
-
     }
 
     void Update()
@@ -71,12 +79,22 @@ public class RhythmGenerator : MonoBehaviour
                     {
                         TextureFeedback.SetActive(true);
                         _lastInputTime = Time.time;
+
+                        if (onSuccess != null)
+                        {
+                            onSuccess();
+                        }
                     }
                     else
                     {
                         Lose.SetActive(true);
                         _timeSignaturePhase = 0;
                         _lastInputTime = Time.time;
+
+                        if (onFail != null)
+                        {
+                            onFail();
+                        }
                     }
                 }
                 break;
@@ -88,17 +106,39 @@ public class RhythmGenerator : MonoBehaviour
         return Time.time - initialInputTime;
     }
 
-    private bool IsOnAcceptableInterval(float currentInput)
+    private float[] GetAcceptableInterval(int fractionInterval)
     {
-        float deltaTime = currentInput - _lastInputTime;
         float[] acceptableTimeInterval = new float[2];
-        float fractionFromInterval = _currentIntervalTime / FRACTION_INTERVAL;
+        float fractionFromInterval = _currentIntervalTime / fractionInterval;
 
         acceptableTimeInterval[0] = _currentIntervalTime - fractionFromInterval;
         acceptableTimeInterval[1] = _currentIntervalTime + fractionFromInterval;
 
-        if (deltaTime > acceptableTimeInterval[0] && deltaTime < acceptableTimeInterval[1])
+        return acceptableTimeInterval;
+    }
+
+    private bool IsOnAcceptableInterval(float currentInput)
+    {
+        float deltaTime = currentInput - _lastInputTime;
+        float[] acceptableTimeIntervalGood = GetAcceptableInterval(FRACTION_INTERVAL_GOOD);
+        float[] acceptableTimeIntervalGreat = GetAcceptableInterval(FRACTION_INTERVAL_GREAT);
+        float[] acceptableTimeIntervalPerfect = GetAcceptableInterval(FRACTION_INTERVAL_PERFECT);
+
+        if (deltaTime > acceptableTimeIntervalPerfect[0] && deltaTime < acceptableTimeIntervalPerfect[1])
         {
+            _successType = SuccessTypes.Perfect;
+            return true;
+        }
+
+        if (deltaTime > acceptableTimeIntervalGreat[0] && deltaTime < acceptableTimeIntervalGreat[1])
+        {
+            _successType = SuccessTypes.Great;
+            return true;
+        }
+
+        if (deltaTime > acceptableTimeIntervalGood[0] && deltaTime < acceptableTimeIntervalGood[1])
+        {
+            _successType = SuccessTypes.Good;
             return true;
         }
 
@@ -107,7 +147,7 @@ public class RhythmGenerator : MonoBehaviour
 
     private void RhythmEnforcer()
     {
-        float fractionFromInterval = _currentIntervalTime / FRACTION_INTERVAL;
+        float fractionFromInterval = _currentIntervalTime / FRACTION_INTERVAL_GOOD;
 
         if (Time.time - _lastInputTime > _currentIntervalTime + fractionFromInterval)
         {
@@ -124,5 +164,13 @@ public class RhythmGenerator : MonoBehaviour
         Lose.SetActive(false);
     }
 
+    public enum SuccessTypes
+    {
+        Good,
+        Great,
+        Perfect
+    }
+
     public float CurrentInterval { get { return _currentIntervalTime; } }
+    public SuccessTypes SuccessType { get { return _successType; } }
 }

@@ -8,16 +8,37 @@ public class AnimatedNatureElement : MonoBehaviour
     public int state;
 
     private SpriteRenderer _spriteRenderer;
+    private RhythmGenerator _rhythmGenerator;
+    private const int MAX_FAIL_TIMES = 4;
+
+    private int _counter = 0;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _rhythmGenerator = FindObjectOfType<RhythmGenerator>();
+    }
+
+    private void OnEnable()
+    {
+        _rhythmGenerator.onSuccess += OnSuccess;
+        _rhythmGenerator.onFail += OnFail;
+    }
+
+    private void OnDisable()
+    {
+        _rhythmGenerator.onSuccess -= OnSuccess;
+        _rhythmGenerator.onFail -= OnFail;
     }
 
     private void Update()
     {
-        //success
-        if (Input.GetKeyDown(KeyCode.Space))
+        
+    }
+
+    private void OnSuccess()
+    {
+        if (Sinput.GetButton(InputManager.GetInputName(myButton)))
         {
             if (state < spriteList.Count)
             {
@@ -29,6 +50,24 @@ public class AnimatedNatureElement : MonoBehaviour
             }
 
             _spriteRenderer.sprite = spriteList[state - 1];
+        }
+        else
+        {
+            OnFail();
+        }
+    }
+
+    private void OnFail()
+    {
+        _counter++;
+        if(_counter > MAX_FAIL_TIMES)
+        {
+            state--;
+            _counter = 0;
+        }
+        if (state >= 0)
+        {
+            _spriteRenderer.sprite = spriteList[state];
         }
     }
 }
