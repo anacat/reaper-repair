@@ -2117,6 +2117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04bb8b8b74703847a3fc779df5fe2eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rhythmData: {fileID: 11400000, guid: 060f9a8c88f59004cb7d56cb3401dd82, type: 2}
   TextureFeedback: {fileID: 1813103430}
   Phase_1: {fileID: 824101528}
   Phase_2: {fileID: 304803503}

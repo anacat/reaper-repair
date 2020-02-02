@@ -2,6 +2,7 @@
 
 public class RhythmGenerator : MonoBehaviour
 {
+    public RhythmData rhythmData;
     private int _timeSignaturePhase;
     private float _initialInputTime;
     private float _currentIntervalTime;
@@ -9,7 +10,6 @@ public class RhythmGenerator : MonoBehaviour
     private const int FRACTION_INTERVAL_GOOD = 5;
     private const int FRACTION_INTERVAL_GREAT = 10;
     private const int FRACTION_INTERVAL_PERFECT = 15;
-    private SuccessTypes _successType;
 
     public delegate void OnSuccessEvent();
     public event OnSuccessEvent onSuccess;
@@ -48,6 +48,7 @@ public class RhythmGenerator : MonoBehaviour
                 {
                     Phase_2.SetActive(true);
                     _currentIntervalTime = GetCurrentInterval(_initialInputTime);
+                    rhythmData.currentInterval = _currentIntervalTime;
                     _lastInputTime = Time.time;
                     _timeSignaturePhase++;
                 }
@@ -99,6 +100,8 @@ public class RhythmGenerator : MonoBehaviour
                 }
                 break;
         }
+
+        rhythmData.timeSignaturePhase = _timeSignaturePhase;
     }
 
     private float GetCurrentInterval(float initialInputTime)
@@ -126,19 +129,19 @@ public class RhythmGenerator : MonoBehaviour
 
         if (deltaTime > acceptableTimeIntervalPerfect[0] && deltaTime < acceptableTimeIntervalPerfect[1])
         {
-            _successType = SuccessTypes.Perfect;
+            rhythmData.successType = RhythmData.SuccessTypes.Perfect;
             return true;
         }
 
         if (deltaTime > acceptableTimeIntervalGreat[0] && deltaTime < acceptableTimeIntervalGreat[1])
         {
-            _successType = SuccessTypes.Great;
+            rhythmData.successType = RhythmData.SuccessTypes.Great;
             return true;
         }
 
         if (deltaTime > acceptableTimeIntervalGood[0] && deltaTime < acceptableTimeIntervalGood[1])
         {
-            _successType = SuccessTypes.Good;
+            rhythmData.successType = RhythmData.SuccessTypes.Good;
             return true;
         }
 
@@ -163,14 +166,4 @@ public class RhythmGenerator : MonoBehaviour
         Phase_3.SetActive(false);
         Lose.SetActive(false);
     }
-
-    public enum SuccessTypes
-    {
-        Good,
-        Great,
-        Perfect
-    }
-
-    public float CurrentInterval { get { return _currentIntervalTime; } }
-    public SuccessTypes SuccessType { get { return _successType; } }
 }
