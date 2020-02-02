@@ -3,6 +3,8 @@
 public class RhythmGenerator : MonoBehaviour
 {
     public RhythmData rhythmData;
+    public GameController gameController;
+
     private int _timeSignaturePhase;
     private float _initialInputTime;
     private float _currentIntervalTime;
@@ -56,7 +58,7 @@ public class RhythmGenerator : MonoBehaviour
                 {
                     _decayCounter++;
 
-                        if(_decayCounter > MAX_FAIL_TIMES)
+                    if (_decayCounter > MAX_FAIL_TIMES)
                     {
                         _decayCounter = 0;
                         RhythmEnforcer();
@@ -118,12 +120,12 @@ public class RhythmGenerator : MonoBehaviour
                         {
                             onSuccess();
                         }
-
-                        if(rhythmData.level != RhythmData.Level.Dark && _winCounter > rhythmData.elements[(int)rhythmData.level - 1].spriteList.Count)
+                        
+                        if (rhythmData.level == RhythmData.Level.Dark && _winCounter > DARK_WIN_TIMES)
                         {
                             BeatLevel();
                         }
-                        else if (rhythmData.level == RhythmData.Level.Dark && _winCounter > DARK_WIN_TIMES)
+                        else if (rhythmData.level != RhythmData.Level.Dark && gameController.IsCurrentLevelFinished())
                         {
                             BeatLevel();
                         }
@@ -138,6 +140,8 @@ public class RhythmGenerator : MonoBehaviour
                         {
                             onFail();
                         }
+
+                        LevelDecrease();
                     }
                 }
                 break;
@@ -149,7 +153,7 @@ public class RhythmGenerator : MonoBehaviour
     private void BeatLevel()
     {
         _winCounter = 0;
-        rhythmData.level++;
+        rhythmData.level = rhythmData.level + 1;
     }
 
     private float GetCurrentInterval(float initialInputTime)
@@ -196,6 +200,14 @@ public class RhythmGenerator : MonoBehaviour
         return false;
     }
 
+    private void LevelDecrease()
+    {
+        if (gameController.IsCurrentLevelDecreasing())
+        {
+            rhythmData.level--;
+        }
+    }
+
     private void RhythmEnforcer()
     {
         float fractionFromInterval = _currentIntervalTime / FRACTION_INTERVAL_GOOD;
@@ -203,10 +215,12 @@ public class RhythmGenerator : MonoBehaviour
         if (Time.time - _lastInputTime > _currentIntervalTime + fractionFromInterval)
         {
             _timeSignaturePhase = 0;
-            if(onFail != null)
+            if (onFail != null)
             {
                 onFail();
             }
+
+            LevelDecrease();
         }
     }
 

@@ -7,7 +7,7 @@ public class AnimatedNatureElement : MonoBehaviour
     public List<Sprite> spriteList;
     public int state;
 
-    private SpriteRenderer _spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     private RhythmGenerator _rhythmGenerator;
     private const int MAX_FAIL_TIMES = 4;
 
@@ -17,7 +17,7 @@ public class AnimatedNatureElement : MonoBehaviour
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         _rhythmGenerator = FindObjectOfType<RhythmGenerator>();
     }
 
@@ -26,13 +26,13 @@ public class AnimatedNatureElement : MonoBehaviour
         _rhythmGenerator.onSuccess += OnSuccess;
         _rhythmGenerator.onFail += OnFail;
 
-        _spriteRenderer.enabled = true;
+        spriteRenderer.enabled = true;
     }
 
     private void Start()
     {
         transform.position = new Vector3(transform.position.x + Random.Range(-1, 1), transform.position.y);
-        _spriteRenderer.flipX = Random.Range(0, 2) == 1;
+        spriteRenderer.flipX = Random.Range(0, 2) == 1;
     }
 
     private void OnSuccess()
@@ -45,7 +45,7 @@ public class AnimatedNatureElement : MonoBehaviour
                 {
                     state++;
 
-                    _spriteRenderer.sprite = spriteList[state];
+                    spriteRenderer.sprite = spriteList[state];
                 }
             }
             else
@@ -55,7 +55,7 @@ public class AnimatedNatureElement : MonoBehaviour
         }
         else
         {
-            _spriteRenderer.flipX = !_spriteRenderer.flipX;
+            spriteRenderer.flipX = !spriteRenderer.flipX;
         }
     }
 
@@ -71,7 +71,7 @@ public class AnimatedNatureElement : MonoBehaviour
                     state--;
                     _failCounter = 0;
 
-                    _spriteRenderer.sprite = spriteList[state];
+                    spriteRenderer.sprite = spriteList[state];
                 }
             }
         }
@@ -82,7 +82,7 @@ public class AnimatedNatureElement : MonoBehaviour
         _rhythmGenerator.onSuccess -= OnSuccess;
         _rhythmGenerator.onFail -= OnFail;
 
-        _spriteRenderer.enabled = false;
+        spriteRenderer.enabled = false;
     }
 
     public void Finish(bool isFinish)

@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d53bcd11df6a9b44a163d09645e0e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myButton: 0
+  myButton: 1
   spriteList:
   - {fileID: -5381122197103972033, guid: 72f1ac4071ecb5d44860ba902f137739, type: 3}
   - {fileID: 750288439278008880, guid: 72f1ac4071ecb5d44860ba902f137739, type: 3}

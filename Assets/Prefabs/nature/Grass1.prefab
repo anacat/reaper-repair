@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d53bcd11df6a9b44a163d09645e0e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myButton: 0
+  myButton: 2
   spriteList:
   - {fileID: -2371202357595111154, guid: 8186e9fa2af354e4c965e094d6cc7b0b, type: 3}
   - {fileID: -8011677831440431109, guid: 8186e9fa2af354e4c965e094d6cc7b0b, type: 3}

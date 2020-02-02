@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/RhythmData Game Data")]
 public class RhythmData : ScriptableObject
 {
-    public List<AnimatedNatureElement> elements;
-
     public enum SuccessTypes
     {
         Good,
@@ -23,6 +19,7 @@ public class RhythmData : ScriptableObject
         Bird
     }
 
+    [Space(10)]
     public float currentInterval;
     public int timeSignaturePhase;
     public SuccessTypes successType;

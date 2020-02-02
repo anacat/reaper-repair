@@ -810,6 +810,7 @@ MonoBehaviour:
   - {fileID: 4806901264079149616, guid: 10ecbd4de1a07f845a812d7cfffc394a, type: 3}
   - {fileID: -558298662110640927, guid: 10ecbd4de1a07f845a812d7cfffc394a, type: 3}
   state: 0
+  spriteRenderer: {fileID: 0}
 --- !u!212 &246361301
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2304,6 +2305,7 @@ MonoBehaviour:
   - {fileID: -418490918851013586, guid: 552c6d5ac0e73974c9b3236e541476a5, type: 3}
   - {fileID: 4396380826401472023, guid: 552c6d5ac0e73974c9b3236e541476a5, type: 3}
   state: 0
+  spriteRenderer: {fileID: 0}
 --- !u!212 &618668944
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2510,6 +2512,7 @@ MonoBehaviour:
   - {fileID: 4806901264079149616, guid: 10ecbd4de1a07f845a812d7cfffc394a, type: 3}
   - {fileID: -558298662110640927, guid: 10ecbd4de1a07f845a812d7cfffc394a, type: 3}
   state: 0
+  spriteRenderer: {fileID: 0}
 --- !u!212 &651377218
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3749,6 +3752,7 @@ MonoBehaviour:
   - {fileID: 3187747191572786727, guid: 0bbb8bb35404cc743a6fbb1ccaaf3631, type: 3}
   - {fileID: -8775424195554145204, guid: 0bbb8bb35404cc743a6fbb1ccaaf3631, type: 3}
   state: 0
+  spriteRenderer: {fileID: 0}
 --- !u!212 &1136434220
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4143,6 +4147,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rhythmData: {fileID: 11400000, guid: 060f9a8c88f59004cb7d56cb3401dd82, type: 2}
+  grassLeft: {fileID: 0}
+  grassRight: {fileID: 0}
+  flowerLeft: {fileID: 0}
+  flowerRight: {fileID: 0}
+  treeLeft: {fileID: 0}
+  treeRight: {fileID: 0}
+  birdLeft: {fileID: 0}
+  birdRight: {fileID: 0}
   grassList: []
   flowerList: []
   treeList: []
@@ -4602,6 +4614,7 @@ MonoBehaviour:
   - {fileID: 3463062479370364882, guid: 8c75ba4d938c9f846bcdf06f4926b16d, type: 3}
   - {fileID: -8266976549939906846, guid: 8c75ba4d938c9f846bcdf06f4926b16d, type: 3}
   state: 0
+  spriteRenderer: {fileID: 0}
 --- !u!212 &1404493988
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4848,6 +4861,7 @@ MonoBehaviour:
   - {fileID: 1026969938404725706, guid: 21dbdbc93f5f15748a1ca206b43d72fe, type: 3}
   - {fileID: -8903831346640803638, guid: 21dbdbc93f5f15748a1ca206b43d72fe, type: 3}
   state: 0
+  spriteRenderer: {fileID: 0}
 --- !u!212 &1467278675
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5684,6 +5698,7 @@ MonoBehaviour:
   - {fileID: 4806901264079149616, guid: 10ecbd4de1a07f845a812d7cfffc394a, type: 3}
   - {fileID: -558298662110640927, guid: 10ecbd4de1a07f845a812d7cfffc394a, type: 3}
   state: 0
+  spriteRenderer: {fileID: 0}
 --- !u!212 &1806368744
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6207,6 +6222,7 @@ MonoBehaviour:
   - {fileID: 3187747191572786727, guid: 0bbb8bb35404cc743a6fbb1ccaaf3631, type: 3}
   - {fileID: -8775424195554145204, guid: 0bbb8bb35404cc743a6fbb1ccaaf3631, type: 3}
   state: 0
+  spriteRenderer: {fileID: 0}
 --- !u!212 &1975124515
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6642,6 +6658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rhythmData: {fileID: 11400000, guid: 060f9a8c88f59004cb7d56cb3401dd82, type: 2}
+  gameController: {fileID: 2071148790}
   TextureFeedback: {fileID: 1813103430}
   Phase_1: {fileID: 824101528}
   Phase_2: {fileID: 304803503}
@@ -6660,6 +6677,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rhythmData: {fileID: 11400000, guid: 060f9a8c88f59004cb7d56cb3401dd82, type: 2}
+  grassLeft: {fileID: 403216457}
+  grassRight: {fileID: 2017044094}
+  flowerLeft: {fileID: 1434031750}
+  flowerRight: {fileID: 1404493987}
+  treeLeft: {fileID: 520291806}
+  treeRight: {fileID: 1791997461}
+  birdLeft: {fileID: 0}
+  birdRight: {fileID: 0}
   grassList:
   - {fileID: 403216457}
   - {fileID: 78858061}
@@ -7686,6 +7711,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1887697181}
     m_Modifications:
+    - target: {fileID: 7213251017808617233, guid: d7a271e0879111c448597a81d80f7b2e,
+        type: 3}
+      propertyPath: myButton
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7213251017808617235, guid: d7a271e0879111c448597a81d80f7b2e,
         type: 3}
       propertyPath: m_LocalPosition.x
