@@ -33,23 +33,19 @@ public class AnimatedNatureElement : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     private void OnSuccess()
     {
         if (Sinput.GetButton(InputManager.GetInputName(myButton)))
         {
-            if (state < spriteList.Count)
+            if (state < spriteList.Count - 1)
             {
                 state++;
+                
+                _spriteRenderer.sprite = spriteList[state];
             }
-            else
-            {
-                state--;
-            }
-
-            _spriteRenderer.sprite = spriteList[state - 1];
         }
         else
         {
@@ -60,14 +56,15 @@ public class AnimatedNatureElement : MonoBehaviour
     private void OnFail()
     {
         _counter++;
-        if(_counter > MAX_FAIL_TIMES)
+        if (_counter > MAX_FAIL_TIMES)
         {
-            state--;
-            _counter = 0;
-        }
-        if (state >= 0)
-        {
-            _spriteRenderer.sprite = spriteList[state];
+            if (state > 0)
+            {
+                state--;
+                _counter = 0;
+
+                _spriteRenderer.sprite = spriteList[state];
+            }
         }
     }
 }
