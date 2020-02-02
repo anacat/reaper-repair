@@ -10,6 +10,10 @@ public class RhythmGenerator : MonoBehaviour
     private const int FRACTION_INTERVAL_GOOD = 5;
     private const int FRACTION_INTERVAL_GREAT = 10;
     private const int FRACTION_INTERVAL_PERFECT = 15;
+    private const float DEFAULT_INTERVAL_TIME = 0.5f;
+    private const int MAX_FAIL_TIMES = 8;
+
+    private int _decayCounter = 0;
 
     public delegate void OnSuccessEvent();
     public event OnSuccessEvent onSuccess;
@@ -35,6 +39,8 @@ public class RhythmGenerator : MonoBehaviour
         switch (_timeSignaturePhase)
         {
             case 0:
+                _currentIntervalTime = DEFAULT_INTERVAL_TIME;
+
                 if (InputManager.IsValidKey())
                 {
                     Phase_1.SetActive(true);
@@ -42,8 +48,20 @@ public class RhythmGenerator : MonoBehaviour
                     _lastInputTime = _initialInputTime;
                     _timeSignaturePhase++;
                 }
+                else
+                {
+                    _decayCounter++;
+
+                        if(_decayCounter > MAX_FAIL_TIMES)
+                    {
+                        _decayCounter = 0;
+                        RhythmEnforcer();
+                    }
+                }
                 break;
             case 1:
+                _currentIntervalTime = DEFAULT_INTERVAL_TIME;
+
                 if (InputManager.IsValidKey())
                 {
                     Phase_2.SetActive(true);
@@ -51,6 +69,16 @@ public class RhythmGenerator : MonoBehaviour
                     rhythmData.currentInterval = _currentIntervalTime;
                     _lastInputTime = Time.time;
                     _timeSignaturePhase++;
+                }
+                else
+                {
+                    _decayCounter++;
+
+                    if (_decayCounter > MAX_FAIL_TIMES)
+                    {
+                        _decayCounter = 0;
+                        RhythmEnforcer();
+                    }
                 }
                 break;
             case 2:
@@ -155,6 +183,7 @@ public class RhythmGenerator : MonoBehaviour
         if (Time.time - _lastInputTime > _currentIntervalTime + fractionFromInterval)
         {
             _timeSignaturePhase = 0;
+            onFail();
         }
     }
 

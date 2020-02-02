@@ -11,7 +11,7 @@ public class AnimatedNatureElement : MonoBehaviour
     private RhythmGenerator _rhythmGenerator;
     private const int MAX_FAIL_TIMES = 4;
 
-    private int _counter = 0;
+    private int _failCounter = 0;
 
     private void Awake()
     {
@@ -55,13 +55,13 @@ public class AnimatedNatureElement : MonoBehaviour
 
     private void OnFail()
     {
-        _counter++;
-        if (_counter > MAX_FAIL_TIMES)
+        _failCounter++;
+        if (_failCounter > MAX_FAIL_TIMES)
         {
             if (state > 0)
             {
                 state--;
-                _counter = 0;
+                _failCounter = 0;
 
                 _spriteRenderer.sprite = spriteList[state];
             }
