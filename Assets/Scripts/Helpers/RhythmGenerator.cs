@@ -49,7 +49,7 @@ public class RhythmGenerator : MonoBehaviour
 
                 if (InputManager.IsValidKey())
                 {
-                    Phase_1.SetActive(true);
+                    if (Application.isEditor) Phase_1.SetActive(true);
                     _initialInputTime = Time.time;
                     _lastInputTime = _initialInputTime;
                     _timeSignaturePhase++;
@@ -70,7 +70,7 @@ public class RhythmGenerator : MonoBehaviour
 
                 if (InputManager.IsValidKey())
                 {
-                    Phase_2.SetActive(true);
+                    if (Application.isEditor) Phase_2.SetActive(true);
                     _currentIntervalTime = GetCurrentInterval(_initialInputTime);
                     rhythmData.currentInterval = _currentIntervalTime;
                     _lastInputTime = Time.time;
@@ -94,13 +94,13 @@ public class RhythmGenerator : MonoBehaviour
                     float currentInput = Time.time;
                     if (IsOnAcceptableInterval(currentInput))
                     {
-                        Phase_3.SetActive(true);
+                        if (Application.isEditor) Phase_3.SetActive(true);
                         _timeSignaturePhase++;
                         _lastInputTime = Time.time;
                     }
                     else
                     {
-                        Lose.SetActive(true);
+                        if (Application.isEditor) Lose.SetActive(true);
                         _timeSignaturePhase = 0;
                     }
                 }
@@ -113,7 +113,7 @@ public class RhythmGenerator : MonoBehaviour
                     if (IsOnAcceptableInterval(currentInput))
                     {
                         _winCounter++;
-                        TextureFeedback.SetActive(true);
+                        if (Application.isEditor) TextureFeedback.SetActive(true);
                         _lastInputTime = Time.time;
 
                         if (onSuccess != null)
@@ -132,7 +132,7 @@ public class RhythmGenerator : MonoBehaviour
                     }
                     else
                     {
-                        Lose.SetActive(true);
+                        if (Application.isEditor) Lose.SetActive(true);
                         _timeSignaturePhase = 0;
                         _lastInputTime = Time.time;
 
