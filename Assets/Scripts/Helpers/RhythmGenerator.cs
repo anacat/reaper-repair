@@ -153,7 +153,7 @@ public class RhythmGenerator : MonoBehaviour
     private void BeatLevel()
     {
         _winCounter = 0;
-        rhythmData.level = rhythmData.level + 1;
+        rhythmData.level++;
     }
 
     private float GetCurrentInterval(float initialInputTime)

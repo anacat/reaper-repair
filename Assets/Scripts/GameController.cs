@@ -99,7 +99,8 @@ public class GameController : MonoBehaviour
             case RhythmData.Level.Flower:
                 return IsFlowerFinished();
             case RhythmData.Level.Tree:
-                return IsTreeFinished();
+                //return IsTreeFinished(); //uncomment when birds are implemented
+                return false;
             //case RhythmData.Level.Bird:
             //    return IsBirdFinished();
         }
